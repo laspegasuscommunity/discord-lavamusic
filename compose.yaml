@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   discord-lavamusic:
+    command: bash -c "apt-get update -y && apt-get install -y openssl && npx prisma generate && node dist/index.js"
     container_name: discord-lavamusic
     depends_on:
       - discord-lavalink
