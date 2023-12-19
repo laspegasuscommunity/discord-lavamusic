@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  lavamusic:
+    command: bash -c "apt-get update -y && apt-get install -y openssl && node dist/index.js"
+    container_name: lavamusic
+    deploy:
+      restart_policy:
+        condition: always
+        delay: 5s
+    env_file: lavamusic.env
+    image: ghcr.io/brblacky/lavamusic:main
+    labels:
+      com.centurylinklabs.watchtower.enable: "false"
+      traefik.enable: "false"
+
+networks:
+  default:
+    external: true
+    name: $NETWORK
